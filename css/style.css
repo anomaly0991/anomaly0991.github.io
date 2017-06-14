@@ -10,11 +10,27 @@ Website: http://themegret.com
 /* Amber Additional .css
 ===============*/
 .pagehead {
-	float: right;
+
+
 	padding: 20px;
+	margin-bottom: 20px;
+
 }
 
 /*pitches*/
+/*API styles*/
+.pitchContent{
+
+	padding-left: 5px;
+}
+
+.creatives{
+	max-width: 400px;
+}
+.creativesContent{
+	padding-left: 10px;
+}
+/*API styles End*/
 
 .pitchcontainer {
 	height: 800px;
@@ -105,12 +121,12 @@ Website: http://themegret.com
 
 	border-color: #888;
   border-radius: 20px; /* (height/2) + border-width */
-  border-style: solid;
-	border-width: 3px;
+  border-style: none;
+	border-width: 1px;
   margin-top: 5px;
   color: #ffffff;
   font-family: 'Helvetica', sans-serif;
-	font-size: 26px;
+	font-size: 16px;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 }

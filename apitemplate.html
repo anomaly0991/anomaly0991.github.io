@@ -62,9 +62,9 @@
               <!-- Main Navigation menu Starts -->
               <div class="collapse navbar-collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                  <li class="current"><a href="/Users/Amber/Desktop/MyThinkLaunch/pitch/bootstrap/egret/index.html">Home</a></li>
-                  <li><a href="/Users/Amber/Desktop/MyThinkLaunch/pitch/bootstrap/egret/profiles.html">Network</a></li>
-                  <li><a href="/Users/Amber/Desktop/MyThinkLaunch/pitch/bootstrap/egret/pitchtable.html">Pitch</a></li>
+                  <li class="current"><a href="#header">Home</a></li>
+                  <li><a href="#step-1">Blog</a></li>
+                  <li><a href="#section-services">Pitch</a></li>
                   <li><a href="#section-feature">Stream</a></li>
                   <li><a href="#section-screenshots">Search</a></li>
                   <li>
@@ -230,14 +230,14 @@
         if (pitch.fields.Attachments[0].url) {
 
           return(
-//es6 code
+
                 `<li class='list-grouped-item panel panel-default'>
                 <img src='${pitch.fields.Attachments[0].url}'/>
-                <h3 class='pitchContent'>${pitch.fields["Project name"]}</h2>
-                <h6 class='pitchContent'>${pitch.fields.Creator}</h6>
-                <h5 class='pitchContent '><span class="label label-default">${pitch.fields.Genre}</span></h5>
-                <p class='pitchContent'>${pitch.fields["Log Line"]}</p>
-                <p class='pitchContent'><b>Open Positions:</b><br>${pitch.fields.Positions}</p>
+                <h3 class='panel-title'>${pitch.fields["Project name"]}</h3>
+                <h5>${pitch.fields.Creator}</h5>
+                ${pitch.fields.Genre}
+                ${pitch.fields["Log Line"]}
+                ${pitch.fields.Positions}
                 </li>`
 
           )
