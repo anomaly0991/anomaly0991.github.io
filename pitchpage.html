@@ -56,7 +56,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!--=== Site Name ===-->
-                <a class="site-name navbar-brand" href="/Users/Amber/Desktop/MyThinkLaunch/pitch/bootstrap/egret/index.html"><span>P</span>itch it!</a>
+                <a class="site-name navbar-brand" href="#"><span>E</span>gret</a>
               </div>
 
               <!-- Main Navigation menu Starts -->
@@ -105,7 +105,7 @@
           </div>
 
           <div class="pagehead">
-            <h3>Network with other Creatives</h3>
+
             <br>
           </div>
 
@@ -114,8 +114,9 @@
 
 
 
-        <div class="creativesContainer">
-          <ul class="creatives list-group">
+
+        <div class="pitchContainer">
+          <ul class="pitches list-group">
 
           </ul>
 
@@ -155,7 +156,7 @@
   			<div class="row">
   				<div class="col-lg-12">
   					<h4 class="footer-title"><!-- Footer Title -->
-  						<a class="site-name" href="#"><span>P</span>itchit</a>
+  						<a class="site-name" href="#"><span>E</span>gret</a>
   					</h4>
 
   					<!-- Social Links -->
@@ -205,7 +206,7 @@
 
   // Step ONE: Query the HTML Document for the container element(s) you're going to fill up:
 
-  const creatives = document.querySelector('.creatives');
+  const pitchContainer = document.querySelector('.pitchContainer');
 
   // Step TWO: Setup your URL variables that takes the link you're trying to go to + the parameters + the api key
 
@@ -213,37 +214,76 @@
 
   // Make a variable for all your DB tables, and add the key for ease
   const pitchTable = 'Pitch?api_key=keykq5utBcEomH4eD'
-  const creativesTable = 'Creatives?api_key=keykq5utBcEomH4eD'
+  const creativeTable = 'Creatives?api_key=keykq5utBcEomH4eD'
   let pitchData;
   // Make variables for the parameters you want to use, if you want to keep track of them or access them easier
-  let params = 'Creatives/recVhUm8qECLbVFu8'
+
+  var pitchId = window.location.search.split("=")[1];
+  let params = '&maxRecords=9&view=Grid%20view'
+
+
 
   // Make the API Call with FETCH! Make sure you "ADD" all the url pieces you need
-  var getData = fetch(base_url+creativesTable)
+  var getData = fetch(base_url+pitchTable)
     .then(data => data.json())
     .then(data => {
-      console.log(data);
-      creativeData = data;
 
+      console.log(data);
+      pitchData = data.records.find((pitch) => {
+        return pitch.id == pitchId
+      });
+      console.log(pitchData);
+
+      pitchContainer.innerHTML=
+      `
+      <img src="${pitchData.fields.Attachments["0"].url}"/>
+      <h3>${pitchData.fields["Project name"]}</h3>
+      <h5><span class="label label-default">${pitchData.fields.Genre}</span></h5>
+      <p>${pitchData.fields["Film Type"]["0"]}</p>
+      <p>${pitchData.fields["Log Line"]}</p>
+      <p>${pitchData.fields.Positions}</p>
+      <br>
+      <h5>Message from the Creator</h5>
+      <p>Hey Guys, I'm really excited to start production on this project.
+      My inspiration for this film actually came from my experience growing
+      up in the African-American community in the 90s and feeling the need to relax my hair texture.
+      Soliel is titled after the main character of the story who's followed around by a literal dark cloud; her hair.
+      It's a metaphorical interpretation of a young girl decision to changer herself in order to blend in and remain
+      safe, or to accept herself the way she is and face the adversity that comes along with that decision. </P>
+      <a href="pitchpage.html" fancy-button> Request to Join Project</a>
+      `
+    })
+
+      //pitchData = data;
       // this is where you do things to your data!
 
-      creatives.innerHTML = creativeData.records.map((creative)=>{
+    //  pitches.innerHTML = pitchData.records.map((pitch)=>{
+      //  if (pitch.fields.Attachments[0].url) {
 
+        //  return(
+//es6 code
+      /**      `<li class='list-grouped-item panel panel-default col-sm-3 pitchsize'>
+            <li id=${pitch.id}>${pitch.name}</li>
+            <img src='${pitch.fields.Attachments[0].url}'class="pitchImage"/>
+            <h3 class='pitchContent'>${pitch.fields["Project name"]}</h2>
+            <h6 class='pitchContent'>${pitch.fields.Creator}</h6>
+            <h5 class='pitchContent '><span class="label label-default">${pitch.fields.Genre}</span></h5>
+            <div class="pitchInfo">
+              <p class='pitchContent'>${pitch.fields["Log Line"]}</p>
+              <p class='pitchContent'><b>Open Positions:</b><br>${pitch.fields.Positions}</p>
+              </div>
+              <a href="#" class="fancy-button button-line btn-col small vertical">
 
-          return(
-
-                `<li class='list-grouped-item panel panel-default col-sm-3 pitchsize'>
-                <img src='${creative.fields["Profile Picture"][0].thumbnails.large.url}'/>
-                <img src='${creative.fields.Attachments[0].thumbnails.small.url}'/>
-                <h3 class='creativesContent'>${creative.fields.Name}</h3>
-                <p class='creativesContent'><span class="label label-default">${creative.fields.Profession}</span></p>
-                 <p class='creativesContent'>${creative.fields.Bio}</p>
-
-                </li>`
+             More info..
+              <span class="icon">
+                <i class="fa fa-leaf"></i>
+              </span>
+            </a>
+            </li>`
 
           )
 
-
+        }
 
 
       }).join('')

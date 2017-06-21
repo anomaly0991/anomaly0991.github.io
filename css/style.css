@@ -17,6 +17,20 @@ Website: http://themegret.com
 
 }
 
+.pitchsize{
+	height: 500px;
+	overflow: hidden;
+}
+
+.pitchImage{
+	height: 150px;
+	padding-top: 10px;
+}
+
+.pitchInfo{
+	height: 150px;
+	overflow: hidden;
+}
 /*pitches*/
 /*API styles*/
 .pitchContent{
@@ -25,7 +39,7 @@ Website: http://themegret.com
 }
 
 .creatives{
-	max-width: 400px;
+
 }
 .creativesContent{
 	padding-left: 10px;
